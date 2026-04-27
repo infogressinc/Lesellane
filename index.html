@@ -66,7 +66,13 @@
       </div>
 
       <label>시공공간</label>
-      <input id="space" type="text" placeholder="예: 거실,복도라인">
+<select id="space">
+  <option value="거실">거실</option>
+  <option value="거실,복도">거실,복도</option>
+  <option value="거실,복도,아일랜드">거실,복도,아일랜드</option>
+  <option value="거실,복도,주방">거실,복도,주방</option>
+  <option value="거실,복도,주방,방">거실,복도,주방,방</option>
+</select>
 
       <label>프로모션 문구</label>
       <input id="promotion" type="text" value="베이비페어 프로모션 적용건">
@@ -172,10 +178,21 @@
       return parseFloat(document.getElementById(id).value) || 0;
     }
 
-    function toggleRoomBox() {
-      const checked = document.getElementById("roomAddCheck").checked;
-      document.getElementById("roomBox").classList.toggle("hidden", !checked);
-    }
+   function toggleRoomBox() {
+  const checked = document.getElementById("roomAddCheck").checked;
+  const roomBox = document.getElementById("roomBox");
+  const roomSpace = document.getElementById("roomSpace");
+
+  roomBox.classList.toggle("hidden", !checked);
+
+  if (checked && !roomSpace.value.trim()) {
+    roomSpace.value = "Room";
+  }
+
+  if (!checked) {
+    roomSpace.value = "";
+  }
+}
 
     function generateRoomText() {
       const roomAddCheck = document.getElementById("roomAddCheck").checked;
