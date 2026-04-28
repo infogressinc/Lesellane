@@ -529,7 +529,7 @@
         const bg2 = await loadFirstAvailableImage([
           "notice-bg.png",
           "notice-bg.PNG",
-          "알림-bg.png.png",
+          "notice-bg_v2.png",
           "알림 bg.png.png"
         ]);
 
@@ -650,7 +650,7 @@ noticeLines.forEach((line) => {
         }, 600);
 
       } catch (error) {
-        alert("이미지 다운로드에 실패했습니다. 저장소에 배경 이미지 파일이 있는지 확인해주세요.\n\n찾는 파일명:\nestimate-bg.png\nnotice-bg.png\n추정 배경.png.png\n알림-bg.png.png");
+        alert("이미지 다운로드에 실패했습니다. 저장소에 배경 이미지 파일이 있는지 확인해주세요.\n\n찾는 파일명:\nestimate-bg.png\nnotice-bg.png\n추정 배경.png.png\notice-bg_v2.png.png");
         console.error(error);
       }
     }
