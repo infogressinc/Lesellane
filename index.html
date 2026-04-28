@@ -533,11 +533,14 @@
           "알림 bg.png.png"
         ]);
 
-        const canvas1 = document.createElement("canvas");
-        canvas1.width = 800;
-        canvas1.height = 1800;
-        const ctx1 = canvas1.getContext("2d");
-        ctx1.drawImage(bg1, 0, 0, 800, 1800);
+        const SCALE = 2;
+
+const canvas1 = document.createElement("canvas");
+canvas1.width = 800 * SCALE;
+canvas1.height = 1800 * SCALE;
+const ctx1 = canvas1.getContext("2d");
+ctx1.scale(SCALE, SCALE);
+ctx1.drawImage(bg1, 0, 0, 800, 1800);
 
         drawCenter(ctx1,
 `🌸저희 르셀란(LESELLANE)을 찾아주셔서 진심으로 감사
@@ -545,7 +548,7 @@
 보답하겠습니다`,
 400, 360, 27, 1.28);
 
-        drawLeft(ctx1,
+drawLeft(ctx1,
 `🌸층간소음디자인매트 견적서
 ◽성함: ${customerName} 고객님
 ◽번호: ${phone}
@@ -555,50 +558,51 @@
 ◽${promotion}`,
 230, 500, 25, 1.35);
 
-        drawCenter(ctx1,
+drawCenter(ctx1,
 `🤍르셀란 600
 600MMX600MMX22MM
 예상장수: ${qty600}장
 예상견적: ${won(qty600 * PRICE_LES600)}
 (프로모션 장당 ${won(PRICE_LES600)})`,
-400, 755, 26, 1.25);
+400, 800, 25, 1.22);
 
-        drawCenter(ctx1,
+drawCenter(ctx1,
 `🤍세디먼트 600
 600MMX600MMX22MM
 예상장수: ${qty600}장
 예상견적: ${won(qty600 * PRICE_SED600)}
 (프로모션 장당 ${won(PRICE_SED600)})`,
-400, 965, 26, 1.25);
+400, 1000, 25, 1.22);
 
-        drawCenter(ctx1,
+drawCenter(ctx1,
 `🤍르셀란 800
 800MMX800MMX22MM
 ※단종예정, 생산중단
 ※기존고객만 추가물량주문가능`,
-400, 1175, 26, 1.25);
+400, 1200, 25, 1.22);
 
-        drawCenter(ctx1,
+drawCenter(ctx1,
 `🤍르셀란 1200
 1,200MMX1,200MMX24MM
 예상장수: ${qty1200}장
 예상견적: ${won(qty1200 * PRICE_LES1200)}
 (프로모션 장당 ${won(PRICE_LES1200)})`,
-400, 1380, 26, 1.25);
+400, 1395, 25, 1.22);
 
-        drawCenter(ctx1,
+drawCenter(ctx1,
 `🤍세디먼트 1200
 1,200MMX1,200MMX24MM
 예상장수: ${qty1200}장
 예상견적: ${won(qty1200 * PRICE_SED1200)}
 (프로모션 장당 ${won(PRICE_SED1200)})`,
-400, 1585, 26, 1.25);
+400, 1595, 25, 1.22);
 
         const canvas2 = document.createElement("canvas");
-        canvas2.width = 800;
-        canvas2.height = 1800;
-        const ctx2 = canvas2.getContext("2d");
-        ctx2.drawImage(bg2, 0, 0, 800, 1800);
+canvas2.width = 800 * SCALE;
+canvas2.height = 1800 * SCALE;
+const ctx2 = canvas2.getContext("2d");
+ctx2.scale(SCALE, SCALE);
+ctx2.drawImage(bg2, 0, 0, 800, 1800);
 
         let noticeLines = [
           `☑️르셀란 컬러: 화이트크림, 린넨베이지, 린넨그레이`,
@@ -633,11 +637,11 @@
    시공 기사님께서 스케쥴을 배정해드리게 되겠습니다`
         );
 
-        let startY = 465;
-        noticeLines.forEach((line) => {
-          drawLeft(ctx2, line, 80, startY, 29, 1.32);
-          startY += line.split("\n").length * 44 + 48;
-        });
+        let startY = 460;
+noticeLines.forEach((line) => {
+  drawLeft(ctx2, line, 80, startY, 25, 1.28);
+  startY += line.split("\n").length * 34 + 36;
+});
 
         downloadCanvas(canvas1, `${customerName}1.png`);
 
