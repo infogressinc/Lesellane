@@ -4,132 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>르셀란 견적 템플릿</title>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f1eb;
-      margin: 0;
-      padding: 20px;
-      color: #222;
-    }
-
-    .wrap {
-      max-width: 820px;
-      margin: 0 auto;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 6px;
-      font-size: 28px;
-    }
-
-    .sub {
-      text-align: center;
-      color: #777;
-      margin-bottom: 24px;
-      font-size: 14px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 16px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.07);
-    }
-
-    h2 {
-      font-size: 18px;
-      margin-top: 0;
-      margin-bottom: 14px;
-    }
-
-    label {
-      display: block;
-      margin-top: 12px;
-      margin-bottom: 6px;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 12px;
-      border: 1px solid #d7d1c7;
-      border-radius: 10px;
-      font-size: 15px;
-      background: #fff;
-    }
-
-    textarea {
-      resize: vertical;
-      line-height: 1.65;
-      white-space: pre-wrap;
-    }
-
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .check {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 12px;
-      font-size: 15px;
-    }
-
-    .check input {
-      width: auto;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .btns {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-    button {
-      border: none;
-      background: #2b2723;
-      color: white;
-      padding: 13px;
-      border-radius: 10px;
-      font-size: 15px;
-      cursor: pointer;
-    }
-
-    .copy {
-      background: #8b735d;
-    }
-
-    .reset {
-      background: #777;
-    }
-
-    .image {
-      background: #5f5145;
-    }
-
-    .small {
-      font-size: 13px;
-      color: #777;
-      margin-top: 6px;
-    }
-
-    @media (max-width: 600px) {
-      .row, .btns {
-        grid-template-columns: 1fr;
-      }
+    body { font-family: Arial, sans-serif; background:#f5f1eb; margin:0; padding:20px; color:#222; }
+    .wrap { max-width:820px; margin:0 auto; }
+    h1 { text-align:center; margin-bottom:6px; font-size:28px; }
+    .sub { text-align:center; color:#777; margin-bottom:24px; font-size:14px; }
+    .card { background:#fff; border-radius:16px; padding:20px; margin-bottom:16px; box-shadow:0 6px 18px rgba(0,0,0,0.07); }
+    h2 { font-size:18px; margin-top:0; margin-bottom:14px; }
+    label { display:block; margin-top:12px; margin-bottom:6px; font-weight:bold; font-size:14px; }
+    input, select, textarea { width:100%; box-sizing:border-box; padding:12px; border:1px solid #d7d1c7; border-radius:10px; font-size:15px; background:#fff; }
+    textarea { resize:vertical; line-height:1.65; white-space:pre-wrap; }
+    .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .check { display:flex; align-items:center; gap:8px; margin-top:12px; font-size:15px; }
+    .check input { width:auto; }
+    .hidden { display:none; }
+    .btns { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:10px; }
+    .btns2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
+    button { border:none; background:#2b2723; color:white; padding:13px; border-radius:10px; font-size:15px; cursor:pointer; }
+    .copy { background:#8b735d; }
+    .reset { background:#777; }
+    .image { background:#5f5145; }
+    .small { font-size:13px; color:#777; margin-top:6px; }
+    @media (max-width:600px) {
+      .row, .btns, .btns2 { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -256,11 +154,14 @@
     </div>
 
     <div class="btns">
-      <button onclick="generateText()">견적 생성</button>
+      <button onclick="generateText()">견적생성</button>
       <button class="copy" onclick="copyText()">복사</button>
-      <button class="image" onclick="downloadImage1()">견적서 1 다운로드</button>
-<button class="image" onclick="downloadImage2()">참조사항 2 다운로드</button>
       <button class="reset" onclick="resetForm()">초기화</button>
+    </div>
+
+    <div class="btns2">
+      <button class="image" onclick="downloadImage1()">견적서1 다운로드</button>
+      <button class="image" onclick="downloadImage2()">견적서2 다운로드</button>
     </div>
 
     <div class="card">
@@ -269,63 +170,62 @@
     </div>
   </div>
 
-  <script>
-    const PRICE_LES600 = 23500;
-    const PRICE_SED600 = 25500;
-    const PRICE_LES1200 = 115000;
-    const PRICE_SED1200 = 125000;
+<script>
+const PRICE_LES600 = 23500;
+const PRICE_SED600 = 25500;
+const PRICE_LES1200 = 115000;
+const PRICE_SED1200 = 125000;
 
-    function won(num) {
-      return Number(num).toLocaleString("ko-KR") + "원";
-    }
+function won(num) {
+  return Number(num).toLocaleString("ko-KR") + "원";
+}
 
-    function getValue(id) {
-      return document.getElementById(id).value.trim();
-    }
+function getValue(id) {
+  return document.getElementById(id).value.trim();
+}
 
-    function getNumber(id) {
-      return parseFloat(document.getElementById(id).value) || 0;
-    }
+function getNumber(id) {
+  return parseFloat(document.getElementById(id).value) || 0;
+}
 
-    function toggleRoomBox() {
-      const checked = document.getElementById("roomAddCheck").checked;
-      const roomBox = document.getElementById("roomBox");
-      const roomSpace = document.getElementById("roomSpace");
+function toggleRoomBox() {
+  const checked = document.getElementById("roomAddCheck").checked;
+  const roomBox = document.getElementById("roomBox");
+  const roomSpace = document.getElementById("roomSpace");
 
-      roomBox.classList.toggle("hidden", !checked);
+  roomBox.classList.toggle("hidden", !checked);
 
-      if (checked && !roomSpace.value.trim()) {
-        roomSpace.value = "Room";
-      }
+  if (checked && !roomSpace.value.trim()) {
+    roomSpace.value = "Room";
+  }
 
-      if (!checked) {
-        roomSpace.value = "";
-      }
-    }
+  if (!checked) {
+    roomSpace.value = "";
+  }
+}
 
-    function generateRoomText() {
-      const roomAddCheck = document.getElementById("roomAddCheck").checked;
-      if (!roomAddCheck) return "";
+function generateRoomText() {
+  const roomAddCheck = document.getElementById("roomAddCheck").checked;
+  if (!roomAddCheck) return "";
 
-      const roomSpace = getValue("roomSpace");
+  const roomSpace = getValue("roomSpace") || "Room";
+  const r1n = getValue("room1Name");
+  const r1q = getNumber("room1Qty");
+  const r2n = getValue("room2Name");
+  const r2q = getNumber("room2Qty");
+  const r3n = getValue("room3Name");
+  const r3q = getNumber("room3Qty");
+  const totalRoomQty = r1q + r2q + r3q;
 
-      const r1n = getValue("room1Name");
-      const r1q = getNumber("room1Qty");
-      const r2n = getValue("room2Name");
-      const r2q = getNumber("room2Qty");
-      const r3n = getValue("room3Name");
-      const r3q = getNumber("room3Qty");
+  let detail = "";
+  if (r1n || r1q) detail += `\n◽방1: ${r1n || "-"} / ${r1q}장`;
+  if (r2n || r2q) detail += `\n◽방2: ${r2n || "-"} / ${r2q}장`;
+  if (r3n || r3q) detail += `\n◽방3: ${r3n || "-"} / ${r3q}장`;
 
-      const totalRoomQty = r1q + r2q + r3q;
+  return `
 
-      let detail = "";
-      if (r1n || r1q) detail += `\n◽방1: ${r1n || "-"} / ${r1q}장`;
-      if (r2n || r2q) detail += `\n◽방2: ${r2n || "-"} / ${r2q}장`;
-      if (r3n || r3q) detail += `\n◽방3: ${r3n || "-"} / ${r3q}장`;
 
-      return `
-
-🌿시공공간: ${roomSpace || "Room"}${detail}
+🌿시공공간: ${roomSpace}${detail}
 
 🤍르셀란 600
 600mmx600mmx22mm
@@ -338,30 +238,29 @@
 예상장수: ${totalRoomQty}장
 예상견적: ${won(totalRoomQty * PRICE_SED600)}
 (프로모션 장당 ${won(PRICE_SED600)})`;
-    }
+}
 
-    function generateText() {
-      const customerName = getValue("customerName") || "000";
-      const phone = getValue("phone");
-      const address = getValue("address");
-      const pyeongType = getValue("pyeongType");
-      const expandType = getValue("expandType");
-      const space = getValue("space");
-      const promotion = getValue("promotion");
+function generateText() {
+  const customerName = getValue("customerName") || "000";
+  const phone = getValue("phone");
+  const address = getValue("address");
+  const pyeongType = getValue("pyeongType");
+  const expandType = getValue("expandType");
+  const space = getValue("space");
+  const promotion = getValue("promotion");
+  const qty600 = getNumber("qty600");
+  const qty1200 = getNumber("qty1200");
 
-      const qty600 = getNumber("qty600");
-      const qty1200 = getNumber("qty1200");
-
-      const reviewChecked = document.getElementById("reviewEvent").checked;
-      const reviewText = reviewChecked
-        ? `
+  const reviewChecked = document.getElementById("reviewEvent").checked;
+  const reviewText = reviewChecked
+    ? `
 
 ☑️리뷰이벤트: 모바일상품권 5만원 혜택 (맘카페or지역카페 후기2건)`
-        : "";
+    : "";
 
-      const roomText = generateRoomText();
+  const roomText = generateRoomText();
 
-      const text = `🌸저희 르셀란(Lesellane)을 찾아주셔서 진심으로 감사드립니다 ${customerName} 고객님, 프리미엄 품질과 완성도의 가치로 보답하겠습니다.
+  const text = `🌸저희 르셀란(Lesellane)을 찾아주셔서 진심으로 감사드립니다 ${customerName} 고객님, 프리미엄 품질과 완성도의 가치로 보답하겠습니다.
 
 🌸층간소음디자인매트 견적서
 ◽성함: ${customerName} 고객님
@@ -414,142 +313,139 @@
 
 ☑️진행 희망시, 최종선택하신 제품과 컬러, 희망시공 일정을 말씀주시면, 르셀란 직영지사배정후, 전문 시공 기사님께서 스케쥴을 배정해드리게 되겠습니다`;
 
-      document.getElementById("result").value = text;
+  document.getElementById("result").value = text;
+}
+
+function copyText() {
+  const result = document.getElementById("result");
+  if (!result.value.trim()) {
+    alert("먼저 견적 생성을 눌러주세요.");
+    return;
+  }
+
+  result.select();
+  result.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(result.value)
+    .then(() => alert("복사되었습니다."))
+    .catch(() => alert("복사에 실패했습니다. 직접 드래그 후 복사해주세요."));
+}
+
+function resetForm() {
+  const ids = [
+    "customerName", "phone", "address", "pyeongType",
+    "qty600", "qty1200",
+    "roomSpace", "room1Name", "room1Qty", "room2Name", "room2Qty", "room3Name", "room3Qty",
+    "result"
+  ];
+
+  ids.forEach(id => document.getElementById(id).value = "");
+
+  document.getElementById("expandType").value = "베확장";
+  document.getElementById("space").value = "거실";
+  document.getElementById("promotion").value = "베이비페어 프로모션 적용건";
+  document.getElementById("reviewEvent").checked = true;
+  document.getElementById("roomAddCheck").checked = false;
+  toggleRoomBox();
+}
+
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(src);
+    img.src = encodeURI(src);
+  });
+}
+
+async function loadFirstAvailableImage(srcList) {
+  for (const src of srcList) {
+    try {
+      return await loadImage(src);
+    } catch (e) {}
+  }
+  throw new Error("이미지 파일을 찾을 수 없습니다.");
+}
+
+function drawCenter(ctx, text, x, y, size, lineHeight = 1.25, weight = "700") {
+  ctx.font = `${weight} ${size}px Arial`;
+  ctx.fillStyle = "white";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+
+  const lines = String(text).split("\n");
+  lines.forEach((line, i) => {
+    ctx.fillText(line, x, y + i * size * lineHeight);
+  });
+}
+
+function drawLeft(ctx, text, x, y, size, lineHeight = 1.35, weight = "700") {
+  ctx.font = `${weight} ${size}px Arial`;
+  ctx.fillStyle = "white";
+  ctx.textAlign = "left";
+  ctx.textBaseline = "top";
+
+  const lines = String(text).split("\n");
+  lines.forEach((line, i) => {
+    ctx.fillText(line, x, y + i * size * lineHeight);
+  });
+}
+
+function downloadCanvas(canvas, filename) {
+  canvas.toBlob(function(blob) {
+    if (!blob) {
+      alert("이미지 생성에 실패했습니다.");
+      return;
     }
 
-    function copyText() {
-      const result = document.getElementById("result");
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
 
-      if (!result.value.trim()) {
-        alert("먼저 견적 생성을 눌러주세요.");
-        return;
-      }
-
-      result.select();
-      result.setSelectionRange(0, 99999);
-
-      navigator.clipboard.writeText(result.value)
-        .then(() => alert("복사되었습니다."))
-        .catch(() => alert("복사에 실패했습니다. 직접 드래그 후 복사해주세요."));
-    }
-
-    function resetForm() {
-      const ids = [
-        "customerName", "phone", "address", "pyeongType",
-        "qty600", "qty1200",
-        "roomSpace", "room1Name", "room1Qty", "room2Name", "room2Qty", "room3Name", "room3Qty",
-        "result"
-      ];
-
-      ids.forEach(id => document.getElementById(id).value = "");
-
-      document.getElementById("expandType").value = "베확장";
-      document.getElementById("space").value = "거실";
-      document.getElementById("promotion").value = "베이비페어 프로모션 적용건";
-      document.getElementById("reviewEvent").checked = true;
-      document.getElementById("roomAddCheck").checked = false;
-      toggleRoomBox();
-    }
-
-    function loadImage(src) {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.crossOrigin = "anonymous";
-        img.onload = () => resolve(img);
-        img.onerror = () => reject(src);
-        img.src = src;
-      });
-    }
-
-    async function loadFirstAvailableImage(srcList) {
-      for (const src of srcList) {
-        try {
-          return await loadImage(src);
-        } catch (e) {}
-      }
-      throw new Error("이미지 파일을 찾을 수 없습니다: " + srcList.join(", "));
-    }
-
-    function downloadCanvas(canvas, filename) {
-      const link = document.createElement("a");
-      link.download = filename;
-      link.href = canvas.toDataURL("image/png");
-      document.body.appendChild(link);
-      link.click();
+    setTimeout(() => {
       document.body.removeChild(link);
-    }
+      URL.revokeObjectURL(url);
+    }, 1000);
+  }, "image/png");
+}
 
-    function drawCenter(ctx, text, x, y, size, lineHeight = 1.25, weight = "400") {
-      ctx.font = `${weight} ${size}px Arial`;
-      ctx.fillStyle = "white";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "top";
+async function createEstimateCanvas() {
+  generateText();
 
-      const lines = String(text).split("\n");
-      lines.forEach((line, i) => {
-        ctx.fillText(line, x, y + i * size * lineHeight);
-      });
-    }
+  const customerName = getValue("customerName") || "고객";
+  const phone = getValue("phone");
+  const address = getValue("address");
+  const pyeongType = getValue("pyeongType");
+  const expandType = getValue("expandType");
+  const space = getValue("space");
+  const promotion = getValue("promotion");
+  const qty600 = getNumber("qty600");
+  const qty1200 = getNumber("qty1200");
 
-    function drawLeft(ctx, text, x, y, size, lineHeight = 1.35, weight = "400") {
-      ctx.font = `${weight} ${size}px Arial`;
-      ctx.fillStyle = "white";
-      ctx.textAlign = "left";
-      ctx.textBaseline = "top";
+  const bg1 = await loadFirstAvailableImage([
+    "추정 배경.png"
+  ]);
 
-      const lines = String(text).split("\n");
-      lines.forEach((line, i) => {
-        ctx.fillText(line, x, y + i * size * lineHeight);
-      });
-    }
+  const SCALE = 2;
+  const canvas = document.createElement("canvas");
+  canvas.width = 800 * SCALE;
+  canvas.height = 1800 * SCALE;
 
-    async function downloadImages() {
-      try {
-        generateText();
+  const ctx = canvas.getContext("2d");
+  ctx.scale(SCALE, SCALE);
+  ctx.drawImage(bg1, 0, 0, 800, 1800);
 
-        const customerName = getValue("customerName") || "고객";
-        const phone = getValue("phone");
-        const address = getValue("address");
-        const pyeongType = getValue("pyeongType");
-        const expandType = getValue("expandType");
-        const space = getValue("space");
-        const promotion = getValue("promotion");
-
-        const qty600 = getNumber("qty600");
-        const qty1200 = getNumber("qty1200");
-
-        const reviewChecked = document.getElementById("reviewEvent").checked;
-
-        const bg1 = await loadFirstAvailableImage([
-          "estimate-bg.png",
-          "estimate-bg.PNG",
-          "추정 배경.png.png",
-          "추정배경.png.png"
-        ]);
-
-        const bg2 = await loadFirstAvailableImage([
-          "notice-bg.png",
-          "notice-bg.PNG",
-          "notice-bg_v2.png",
-          "알림 bg.png.png"
-        ]);
-
-        const SCALE = 2;
-
-const canvas1 = document.createElement("canvas");
-canvas1.width = 800 * SCALE;
-canvas1.height = 1800 * SCALE;
-const ctx1 = canvas1.getContext("2d");
-ctx1.scale(SCALE, SCALE);
-ctx1.drawImage(bg1, 0, 0, 800, 1800);
-
-        drawCenter(ctx1,
+  drawCenter(ctx,
 `🌸저희 르셀란(LESELLANE)을 찾아주셔서 진심으로 감사
 드립니다, ${customerName} 고객님! 프리미엄 품질과 완성도의 가치로
 보답하겠습니다`,
 400, 360, 27, 1.28);
 
-drawLeft(ctx1,
+  drawLeft(ctx,
 `🌸층간소음디자인매트 견적서
 ◽성함: ${customerName} 고객님
 ◽번호: ${phone}
@@ -559,7 +455,7 @@ drawLeft(ctx1,
 ◽${promotion}`,
 230, 500, 25, 1.35);
 
-drawCenter(ctx1,
+  drawCenter(ctx,
 `🤍르셀란 600
 600MMX600MMX22MM
 예상장수: ${qty600}장
@@ -567,7 +463,7 @@ drawCenter(ctx1,
 (프로모션 장당 ${won(PRICE_LES600)})`,
 400, 800, 25, 1.22);
 
-drawCenter(ctx1,
+  drawCenter(ctx,
 `🤍세디먼트 600
 600MMX600MMX22MM
 예상장수: ${qty600}장
@@ -575,86 +471,113 @@ drawCenter(ctx1,
 (프로모션 장당 ${won(PRICE_SED600)})`,
 400, 1000, 25, 1.22);
 
-drawCenter(ctx1,
+  drawCenter(ctx,
 `🤍르셀란 800
 800MMX800MMX22MM
 ※단종예정, 생산중단
 ※기존고객만 추가물량주문가능`,
 400, 1200, 25, 1.22);
 
-drawCenter(ctx1,
+  drawCenter(ctx,
 `🤍르셀란 1200
 1,200MMX1,200MMX24MM
 예상장수: ${qty1200}장
 예상견적: ${won(qty1200 * PRICE_LES1200)}
 (프로모션 장당 ${won(PRICE_LES1200)})`,
-400, 1395, 25, 1.22);
+400, 1375, 25, 1.22);
 
-drawCenter(ctx1,
+  drawCenter(ctx,
 `🤍세디먼트 1200
 1,200MMX1,200MMX24MM
 예상장수: ${qty1200}장
 예상견적: ${won(qty1200 * PRICE_SED1200)}
 (프로모션 장당 ${won(PRICE_SED1200)})`,
-400, 1595, 25, 1.22);
+400, 1575, 25, 1.22);
 
-        const canvas2 = document.createElement("canvas");
-canvas2.width = 800 * SCALE;
-canvas2.height = 1800 * SCALE;
-const ctx2 = canvas2.getContext("2d");
-ctx2.scale(SCALE, SCALE);
-ctx2.drawImage(bg2, 0, 0, 800, 1800);
+  return canvas;
+}
 
-        let noticeLines = [
-          `☑️르셀란 컬러: 화이트크림, 린넨베이지, 린넨그레이`,
-          `☑️세디먼트 컬러: 세디먼트스킨`
-        ];
+async function createNoticeCanvas() {
+  generateText();
 
-        if (reviewChecked) {
-          noticeLines.push(`☑️리뷰이벤트: 모바일상품권 5만원 혜택\n   (맘카페OR지역카페 후기2건)`);
-        }
+  const reviewChecked = document.getElementById("reviewEvent").checked;
 
-        noticeLines.push(
-`☑️공동구매혜택: 3가구 이상 진행시 각 가구당
+  const bg2 = await loadFirstAvailableImage([
+    "notice-bg_v2.png"
+  ]);
+
+  const SCALE = 2;
+  const canvas = document.createElement("canvas");
+  canvas.width = 800 * SCALE;
+  canvas.height = 1800 * SCALE;
+
+  const ctx = canvas.getContext("2d");
+  ctx.scale(SCALE, SCALE);
+  ctx.drawImage(bg2, 0, 0, 800, 1800);
+
+  let noticeLines = [
+    `✅르셀란 컬러: 화이트크림, 린넨베이지, 린넨그레이`,
+    `✅세디먼트 컬러: 세디먼트스킨`
+  ];
+
+  if (reviewChecked) {
+    noticeLines.push(`✅리뷰이벤트: 모바일상품권 5만원 혜택\n   (맘카페OR지역카페 후기2건)`);
+  }
+
+  noticeLines.push(
+`✅공동구매혜택: 3가구 이상 진행시 각 가구당
    -100,000원 추가할인 제공됩니다 (1200사이즈
    한정이며 거실,복도 2개 공간 이상 진행시)`,
 
-`☑️해당견적은 현금가 프로모션이 적용된 기준이며
+`✅해당견적은 현금가 프로모션이 적용된 기준이며
    세금계산서&현금영수증&신용카드 결제시에는
    vat 5% 별도 발생되는점 참조부탁드립니다. 전문
    시공설치비용 & 출장비용은 모두 무료입니다`,
 
-`☑️예상수량의 경우 온라인도면 및 데이터값을 통해
+`✅예상수량의 경우 온라인도면 및 데이터값을 통해
    산출된 양으로, 실제시공시 조금의 오차범위는
    발생될 수 있습니다. 따라서 실제시공시 들어간
    장수만큼만 카운터해 결제가 진행되겠습니다.`,
 
-`☑️프로모션은 시공일 기준이 아닌, 예약확정일
+`✅프로모션은 시공일 기준이 아닌, 예약확정일
    기준으로 적용되겠습니다. 시공일정 계약에 대한
    예약금은 0원이며, 별도 발생하지 않습니다`,
 
-`☑️진행 희망시, 최종선택하신 제품과 컬러, 희망시공
+`✅진행 희망시, 최종선택하신 제품과 컬러, 희망시공
    일정을 말씀주시면, 르셀란 직영지사배정후, 전문
    시공 기사님께서 스케쥴을 배정해드리게 되겠습니다`
-        );
+  );
 
-        let startY = 460;
-noticeLines.forEach((line) => {
-  drawLeft(ctx2, line, 80, startY, 25, 1.28);
-  startY += line.split("\n").length * 34 + 36;
-});
+  let startY = 460;
+  noticeLines.forEach((line) => {
+    drawLeft(ctx, line, 80, startY, 25, 1.28);
+    startY += line.split("\n").length * 34 + 36;
+  });
 
-        downloadCanvas(canvas1, `${customerName}1.png`);
+  return canvas;
+}
 
-        setTimeout(() => {
-          downloadCanvas(canvas2, `${customerName}2.png`);
-        }, 600);
+async function downloadImage1() {
+  try {
+    const customerName = getValue("customerName") || "고객";
+    const canvas = await createEstimateCanvas();
+    downloadCanvas(canvas, `${customerName}1.png`);
+  } catch (e) {
+    alert("견적서 이미지 다운로드에 실패했습니다. 배경 이미지 파일명을 확인해주세요.");
+    console.error(e);
+  }
+}
 
-      } catch (error) {
-        alert("이미지 다운로드에 실패했습니다. 저장소에 배경 이미지 파일이 있는지 확인해주세요.\n\n찾는 파일명:\nestimate-bg.png\nnotice-bg.png\n추정 배경.png.png\notice-bg_v2.png.png");
-        console.error(error);
-      }
-    }
-  </script>
+async function downloadImage2() {
+  try {
+    const customerName = getValue("customerName") || "고객";
+    const canvas = await createNoticeCanvas();
+    downloadCanvas(canvas, `${customerName}2.png`);
+  } catch (e) {
+    alert("참조사항 이미지 다운로드에 실패했습니다. 배경 이미지 파일명을 확인해주세요.");
+    console.error(e);
+  }
+}
+</script>
 </body>
 </html>
