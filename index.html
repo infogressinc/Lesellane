@@ -92,11 +92,11 @@
     }
 
     .btns {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
 
     button {
       border: none;
@@ -258,7 +258,8 @@
     <div class="btns">
       <button onclick="generateText()">견적 생성</button>
       <button class="copy" onclick="copyText()">복사</button>
-      <button class="image" onclick="downloadImages()">이미지 2장 다운로드</button>
+      <button class="image" onclick="downloadImage1()">견적서 1 다운로드</button>
+<button class="image" onclick="downloadImage2()">참조사항 2 다운로드</button>
       <button class="reset" onclick="resetForm()">초기화</button>
     </div>
 
