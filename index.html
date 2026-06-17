@@ -193,16 +193,16 @@ async function downloadEstimate() {
 
     ctx.drawImage(bg, 0, 0, BASE_W, BASE_H);
 
-    // CUSTOMER 값 입력 위치
-    drawText(ctx, `${customerName} 고객님`, 255, 610, 34);
-    drawText(ctx, phone, 255, 660, 34);
-    drawText(ctx, address, 255, 710, 34);
+    // CUSTOMER 값 입력 위치 / 글씨 크기 조정
+    const customerFontSize = 30;
 
-    // 평형타입 / 시공공간은 왼쪽 양식과 겹치지 않도록 더 오른쪽으로 이동
-    drawText(ctx, `${pyeongType} (${expandType})`, 315, 760, 34);
-    drawText(ctx, space, 300, 810, 34);
+    drawText(ctx, `${customerName} 고객님`, 255, 618, customerFontSize);
+    drawText(ctx, phone, 255, 668, customerFontSize);
+    drawText(ctx, address, 255, 718, customerFontSize);
+    drawText(ctx, `${pyeongType} (${expandType})`, 315, 760, customerFontSize);
+    drawText(ctx, space, 300, 810, customerFontSize);
 
-    // 750 견적값 - 전체적으로 조금 더 아래로 조정
+    // 750 견적값
     const priceX = 830;
     drawRight(ctx, qty750 ? `${qty750}장` : "", priceX, 1118, 34);
     drawRight(ctx, won(PRICE_750_CASH), priceX, 1184, 34);
