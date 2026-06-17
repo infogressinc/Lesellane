@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>르셀란 견적서 생성기</title>
-
   <style>
     body { font-family: Arial, sans-serif; background:#f5f5f5; margin:0; padding:20px; color:#333; }
     .wrap { max-width:760px; margin:0 auto; }
@@ -16,7 +15,6 @@
     input, select { width:100%; box-sizing:border-box; padding:12px; border:1px solid #ddd; border-radius:10px; font-size:15px; }
     .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
     button { width:100%; border:none; background:#2f2f2f; color:white; padding:15px; border-radius:12px; font-size:16px; cursor:pointer; }
-    button:hover { opacity:.9; }
     .small { color:#777; font-size:13px; margin-top:8px; }
     @media (max-width:600px) { .row { grid-template-columns:1fr; } }
   </style>
@@ -44,14 +42,11 @@
           <label>평형타입</label>
           <input id="pyeongType" type="text" placeholder="예: 34평">
         </div>
-
         <div>
           <label>확장 여부</label>
           <select id="expandType">
             <option value="베확장">베확장</option>
             <option value="비확장">비확장</option>
-            <option value="부분확장">부분확장</option>
-            <option value="확인필요">확인필요</option>
           </select>
         </div>
       </div>
@@ -66,9 +61,6 @@
         <option value="방2곳 별도견적">방2곳 별도견적</option>
         <option value="방3곳 별도견적">방3곳 별도견적</option>
       </select>
-
-      <label>프로모션 문구</label>
-      <input id="promotion" type="text" value="베이비페어 프로모션 혜택 적용">
     </div>
 
     <div class="card">
@@ -80,7 +72,6 @@
           <label>750size 예상장수</label>
           <input id="qty750" type="number" step="0.5" placeholder="예: 70">
         </div>
-
         <div>
           <label>1300size 예상장수</label>
           <input id="qty1300" type="number" step="0.5" placeholder="예: 25">
@@ -178,7 +169,6 @@ async function downloadEstimate() {
     const pyeongType = getValue("pyeongType") || "";
     const expandType = getValue("expandType") || "";
     const space = getValue("space") || "";
-    const promotion = getValue("promotion") || "";
 
     const qty750 = getNumber("qty750");
     const qty1300 = getNumber("qty1300");
@@ -203,27 +193,28 @@ async function downloadEstimate() {
 
     ctx.drawImage(bg, 0, 0, BASE_W, BASE_H);
 
-    // CUSTOMER 정보
-    drawText(ctx, `성함: ${customerName} 고객님`, 170, 610, 34);
-    drawText(ctx, `번호: ${phone}`, 170, 660, 34);
-    drawText(ctx, `주소: ${address}`, 170, 710, 34);
-    drawText(ctx, `평형타입: ${pyeongType} (${expandType})`, 170, 760, 34);
-    drawText(ctx, `시공공간: ${space}`, 170, 810, 34);
-    drawText(ctx, promotion, 170, 860, 34);
+    // CUSTOMER 값만 입력
+    const valueX = 255;
+    drawText(ctx, `${customerName} 고객님`, valueX, 610, 34);
+    drawText(ctx, phone, valueX, 660, 34);
+    drawText(ctx, address, valueX, 710, 34);
+    drawText(ctx, `${pyeongType} (${expandType})`, valueX, 760, 34);
+    drawText(ctx, space, valueX, 810, 34);
 
-    // 750 견적값
-    drawRight(ctx, qty750 ? `${qty750}장` : "", 830, 1084, 34);
-    drawRight(ctx, won(PRICE_750_CASH), 830, 1150, 34);
-    drawRight(ctx, won(PRICE_750_CARD), 830, 1216, 34);
-    drawRight(ctx, qty750 ? won(cash750) : "", 830, 1282, 34);
-    drawRight(ctx, qty750 ? won(card750) : "", 830, 1348, 34);
+    // 750 견적값 - 기존보다 아래로 조정
+    const priceX = 830;
+    drawRight(ctx, qty750 ? `${qty750}장` : "", priceX, 1100, 34);
+    drawRight(ctx, won(PRICE_750_CASH), priceX, 1166, 34);
+    drawRight(ctx, won(PRICE_750_CARD), priceX, 1232, 34);
+    drawRight(ctx, qty750 ? won(cash750) : "", priceX, 1298, 34);
+    drawRight(ctx, qty750 ? won(card750) : "", priceX, 1364, 34);
 
-    // 1300 견적값
-    drawRight(ctx, qty1300 ? `${qty1300}장` : "", 830, 1605, 34);
-    drawRight(ctx, won(PRICE_1300_CASH), 830, 1671, 34);
-    drawRight(ctx, won(PRICE_1300_CARD), 830, 1737, 34);
-    drawRight(ctx, qty1300 ? won(cash1300) : "", 830, 1803, 34);
-    drawRight(ctx, qty1300 ? won(card1300) : "", 830, 1869, 34);
+    // 1300 견적값 - 기존보다 아래로 조정
+    drawRight(ctx, qty1300 ? `${qty1300}장` : "", priceX, 1620, 34);
+    drawRight(ctx, won(PRICE_1300_CASH), priceX, 1686, 34);
+    drawRight(ctx, won(PRICE_1300_CARD), priceX, 1752, 34);
+    drawRight(ctx, qty1300 ? won(cash1300) : "", priceX, 1818, 34);
+    drawRight(ctx, qty1300 ? won(card1300) : "", priceX, 1884, 34);
 
     const fileName = `${cleanFileName(customerName)}_르셀란견적서.png`;
     downloadCanvas(canvas, fileName);
