@@ -193,23 +193,24 @@ async function downloadEstimate() {
 
     ctx.drawImage(bg, 0, 0, BASE_W, BASE_H);
 
-    // CUSTOMER 값만 입력
-    const valueX = 255;
-    drawText(ctx, `${customerName} 고객님`, valueX, 610, 34);
-    drawText(ctx, phone, valueX, 660, 34);
-    drawText(ctx, address, valueX, 710, 34);
-    drawText(ctx, `${pyeongType} (${expandType})`, valueX, 760, 34);
-    drawText(ctx, space, valueX, 810, 34);
+    // CUSTOMER 값 입력 위치
+    drawText(ctx, `${customerName} 고객님`, 255, 610, 34);
+    drawText(ctx, phone, 255, 660, 34);
+    drawText(ctx, address, 255, 710, 34);
 
-    // 750 견적값 - 기존보다 아래로 조정
+    // 평형타입 / 시공공간은 왼쪽 양식과 겹치지 않도록 더 오른쪽으로 이동
+    drawText(ctx, `${pyeongType} (${expandType})`, 315, 760, 34);
+    drawText(ctx, space, 300, 810, 34);
+
+    // 750 견적값 - 전체적으로 조금 더 아래로 조정
     const priceX = 830;
-    drawRight(ctx, qty750 ? `${qty750}장` : "", priceX, 1100, 34);
-    drawRight(ctx, won(PRICE_750_CASH), priceX, 1166, 34);
-    drawRight(ctx, won(PRICE_750_CARD), priceX, 1232, 34);
-    drawRight(ctx, qty750 ? won(cash750) : "", priceX, 1298, 34);
-    drawRight(ctx, qty750 ? won(card750) : "", priceX, 1364, 34);
+    drawRight(ctx, qty750 ? `${qty750}장` : "", priceX, 1118, 34);
+    drawRight(ctx, won(PRICE_750_CASH), priceX, 1184, 34);
+    drawRight(ctx, won(PRICE_750_CARD), priceX, 1250, 34);
+    drawRight(ctx, qty750 ? won(cash750) : "", priceX, 1316, 34);
+    drawRight(ctx, qty750 ? won(card750) : "", priceX, 1382, 34);
 
-    // 1300 견적값 - 기존보다 아래로 조정
+    // 1300 견적값
     drawRight(ctx, qty1300 ? `${qty1300}장` : "", priceX, 1620, 34);
     drawRight(ctx, won(PRICE_1300_CASH), priceX, 1686, 34);
     drawRight(ctx, won(PRICE_1300_CARD), priceX, 1752, 34);
