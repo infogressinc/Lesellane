@@ -17,6 +17,21 @@
     button { width:100%; border:none; background:#2f2f2f; color:white; padding:15px; border-radius:12px; font-size:16px; cursor:pointer; }
     .small { color:#777; font-size:13px; margin-top:8px; }
     @media (max-width:600px) { .row { grid-template-columns:1fr; } }
+    .button-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.reset-btn {
+  background: #777;
+}
+
+@media (max-width:600px) {
+  .button-row {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 
@@ -79,7 +94,10 @@
       </div>
     </div>
 
-    <button onclick="downloadEstimate()">견적서 PNG 다운</button>
+    <div class="button-row">
+  <button onclick="downloadEstimate()">견적서 PNG 다운</button>
+  <button class="reset-btn" onclick="resetForm()">초기화</button>
+</div>
   </div>
 
 <script>
@@ -159,7 +177,18 @@ function downloadCanvas(canvas, filename) {
   }, "image/png", 1.0);
 }
 
-async function downloadEstimate() {
+async function downloadEstimate() 
+function resetForm() {
+  document.getElementById("customerName").value = "";
+  document.getElementById("phone").value = "";
+  document.getElementById("address").value = "";
+  document.getElementById("pyeongType").value = "";
+  document.getElementById("expandType").value = "베확장";
+  document.getElementById("space").value = "거실";
+  document.getElementById("qty750").value = "";
+  document.getElementById("qty1300").value = "";
+}
+{
   try {
     const bg = await loadBackground();
 
