@@ -177,7 +177,6 @@ function downloadCanvas(canvas, filename) {
   }, "image/png", 1.0);
 }
 
-async function downloadEstimate() 
 function resetForm() {
   document.getElementById("customerName").value = "";
   document.getElementById("phone").value = "";
@@ -188,7 +187,8 @@ function resetForm() {
   document.getElementById("qty750").value = "";
   document.getElementById("qty1300").value = "";
 }
-{
+
+async function downloadEstimate() {
   try {
     const bg = await loadBackground();
 
@@ -230,11 +230,6 @@ drawText(ctx, phone, 253, 667, customerFontSize);
 drawText(ctx, address, 253, 716, customerFontSize);
 drawText(ctx, `${pyeongType} (${expandType})`, 316, 761, customerFontSize);
 drawText(ctx, space, 316, 809, customerFontSize);
-drawText(ctx, `${customerName} 고객님`, 252, 619, customerFontSize);
-drawText(ctx, phone, 252, 666, customerFontSize);
-drawText(ctx, address, 252, 715, customerFontSize);
-drawText(ctx, `${pyeongType} (${expandType})`, 315, 761, customerFontSize);
-drawText(ctx, space, 315, 809, customerFontSize);
 
     // 750 견적값
     const priceX = 830;
